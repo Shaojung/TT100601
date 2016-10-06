@@ -2,8 +2,11 @@ package com.test.tt100601;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
                                 new int[] {android.R.id.text1, android.R.id.text2}
                                 );
         sp.setAdapter(adapter);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Map m = mylist.get(position);
+                Toast.makeText(MainActivity.this, "Show City:" + m.get("city"), Toast.LENGTH_SHORT).show();
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 }
